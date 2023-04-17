@@ -1,0 +1,66 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+body{
+  min-height: 100vh;
+  background-color: white;
+  background-size: cover;
+  background-position: center;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.sider-bar{
+  background: rgb(65, 61, 61);
+  backdrop-filter: blur(15px);
+  height: 100vh;
+  position: fixed;
+  top:0;
+  left: 0;
+  overflow: auto;
+}
+.sider-bar .menu{
+  width: 100%;
+  margin-top: 80px;
+}
+.sider-bar .menu .item{
+  position: relative;
+  cursor: pointer;
+
+}
+.sider-bar .menu .item a{
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  padding: 5px 30px;
+  line-height: 60px;
+}
+.sider-bar .menu .item a:hover{
+  background-color: blueviolet;
+  transition: 0.3s ease;
+}
+.sider-bar .menu .item i{
+  margin-right: 15px;
+}
+.sider-bar .menu .item a .dropdown{
+  position: absolute;
+  right: 0;
+  margin:20px;
+  transition: 0.3s ease;
+}
+.sider-bar .menu .item .sub-menu{
+  background: rgb(40, 37, 37);
+  display: none;
+}
+.sider-bar .menu .item .sub-menu a{
+  padding-left: 70px;
+}
+.rotate{
+  transform: rotate(90deg);
+}
