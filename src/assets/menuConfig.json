@@ -1,0 +1,51 @@
+[
+    {
+        "id":1
+        ,"icon":"fas fa-desktop"
+        ,"modulo":"Inicio"
+    },
+    {
+        "id":2
+        ,"icon":"fas fa-table"
+        ,"modulo":"Administración"
+        ,"submenu":[
+            {
+                "id":1
+                ,"submodulo":"Rol de usuarios"
+            },
+            {
+                "id":2
+                ,"submodulo":"Recuperación de contraseña"
+            },
+            {
+                "id":3
+                ,"submodulo":"Proceso Automáticos"
+            }
+        ]
+    },
+    {
+        "id":3
+        ,"icon":"fas fa-th"
+        ,"modulo":"Dasboard"
+    },
+    {
+        "id":4
+        ,"icon":"fas fa-cogs"
+        ,"modulo":"Juegos"
+        ,"submenu":[
+            {
+                "id":1
+                ,"submodulo":"Buscaminas"
+            },
+            {
+                "id":2
+                ,"submodulo":"Serpientes y Escaleras"
+            }
+        ]
+    },
+    {
+        "id":5
+        ,"icon":"fas fa-info-circle"
+        ,"modulo":"Información"
+    }
+]

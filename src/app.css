@@ -19,6 +19,7 @@ body{
   background: rgb(65, 61, 61);
   backdrop-filter: blur(15px);
   height: 100vh;
+  width: 350px;
   position: fixed;
   top:0;
   left: 0;
