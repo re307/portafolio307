@@ -11,11 +11,11 @@
       });
       j('.menu-btn').click(()=>{
         j('.sider-bar').addClass('active');
-        j('.menu-btn').class('visibility','hidden');
+        j('.menu-btn').css('visibility','hidden');
       });
       j('.close-btn').click(()=>{
         j('.sider-bar').removeClass('active');
-        j('.menu-btn').class('visibility','visible');
+        j('.menu-btn').css('visibility','visible');
       });
     });
   const handelClickSubMenu = (e)=>{
