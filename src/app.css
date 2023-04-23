@@ -93,3 +93,43 @@ body{
   align-content: center;
   padding: 50px;
 }
+.celda{
+  width: 25px;
+  height: 25px;
+  border-color: #3f4047;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #726b6b;
+  text-align: center;
+}
+.celda_libre{
+  width: 25px;
+  height: 25px;
+  border-color: #3f4047;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #c4c4c1;
+  text-align: center;
+}
+.elementor-toggle {
+  pointer-events: none;
+}
+.celda p{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.celda img{
+  width: 25px;
+  height: 25px;
+  padding:0px;
+}
+.celda_libre p, img{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding:0px;
+}
+.celda_libre img{
+  width: 25px;
+  height: 25px;
+  padding:0px;
+}

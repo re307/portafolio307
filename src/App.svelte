@@ -3,23 +3,31 @@
 // @ts-nocheck
   import { onMount } from 'svelte';
   import itemesMenu from './assets/menuConfig.json';
+  import Inicio from './lib/Inicio.svelte'
+  import Buscaminas from './lib/Buscaminas.svelte'
+  export let modulo = "";
   const j = window.$;
-    onMount(()=>{
-      j('.sub-btn').click((e)=>{
-        j(e.target).next('.sub-menu').slideToggle();
-        j(e.target).find('.dropdown').toggleClass('rotate');
-      });
-      j('.menu-btn').click(()=>{
-        j('.sider-bar').addClass('active');
-        j('.menu-btn').css('visibility','hidden');
-      });
-      j('.close-btn').click(()=>{
-        j('.sider-bar').removeClass('active');
-        j('.menu-btn').css('visibility','visible');
-      });
+  onMount(()=>{
+    j('.sub-btn').click((e)=>{
+      j(e.target).next('.sub-menu').slideToggle();
+      j(e.target).find('.dropdown').toggleClass('rotate');
     });
-  const handelClickSubMenu = (e)=>{
-    // e.children[0].classList.toggle('');
+    j('.menu-btn').click(()=>{
+      j('.sider-bar').addClass('active');
+      j('.menu-btn').css('visibility','hidden');
+    });
+    j('.close-btn').click(()=>{
+      j('.sider-bar').removeClass('active');
+      j('.menu-btn').css('visibility','visible');
+    });
+  });
+  const clickMenu = (item)=>{
+    console.log(item);
+    if (item.modulo !== undefined) {
+      modulo = item.modulo
+    }else{
+      modulo = item.submodulo
+    }
   }
 </script>
 <div class="menu-btn">
@@ -33,12 +41,12 @@
     {#each itemesMenu as item}
       <div class="item">
         {#if item.submenu === undefined}
-          <div class="a-item"><i class="{item.icon}"></i>{item.modulo}</div>
+          <div class="a-item" on:click={()=>{clickMenu(item)}}><i class="{item.icon}" ></i>{item.titulo}</div>
         {:else}
-          <div class="sub-btn a-item"><i class="{item.icon}"></i>{item.modulo}<i class="fas fa-angle-right dropdown"></i></div>
+          <div class="sub-btn a-item"><i class="{item.icon}"></i>{item.titulo}<i class="fas fa-angle-right dropdown"></i></div>
           <div class="sub-menu">
             {#each item.submenu as submenu}
-              <div class="a-item sub-menu-item">{submenu.submodulo}</div>
+              <div class="a-item sub-menu-item" on:click={()=>{clickMenu(submenu)}}>{submenu.titulo}</div>
             {/each}
           </div>
         {/if}
@@ -46,6 +54,11 @@
     {/each}
   </div>
 </div>
-<section class="main">
-  <h1>Hola mundo</h1>
+<section class="main" id="main">
+  {#if modulo === 'Inicio'||modulo === ''}
+    <Inicio desde={modulo}></Inicio>
+  {/if}
+  <!-- {#if modulo === 'Buscaminas'}
+    <Buscaminas></Buscaminas>
+  {/if} -->
 </section>

@@ -3,23 +3,28 @@
         "id":1
         ,"icon":"fas fa-desktop"
         ,"modulo":"Inicio"
+        ,"titulo":"Inicio"
     },
     {
         "id":2
         ,"icon":"fas fa-table"
-        ,"modulo":"Administración"
+        ,"modulo":"Administracion"
+        ,"titulo":"Administración"
         ,"submenu":[
             {
                 "id":1
-                ,"submodulo":"Rol de usuarios"
+                ,"submodulo":"Admin_Usuarios"
+                ,"titulo":"Roles de Usuario"
             },
             {
                 "id":2
-                ,"submodulo":"Recuperar contraseña"
+                ,"submodulo":"Recuperar_pass"
+                ,"titulo":"Recuperar contraseña"
             },
             {
                 "id":3
-                ,"submodulo":"Proceso Automáticos"
+                ,"submodulo":"ProcesosAutomatizados"
+                ,"titulo":"Procesos Automatizados"
             }
         ]
     },
@@ -27,25 +32,30 @@
         "id":3
         ,"icon":"fas fa-th"
         ,"modulo":"Dasboard"
+        ,"titulo":"Dasboard"
     },
     {
         "id":4
         ,"icon":"fas fa-cogs"
         ,"modulo":"Juegos"
+        ,"titulo":"Juegos"
         ,"submenu":[
             {
                 "id":1
                 ,"submodulo":"Buscaminas"
+                ,"titulo":"Buscaminas"
             },
             {
                 "id":2
-                ,"submodulo":"Serpientes y Escaleras"
+                ,"submodulo":"Serpientes_Escaleras"
+                ,"titulo":"Serpientes y Escaleras"
             }
         ]
     },
     {
         "id":5
         ,"icon":"fas fa-info-circle"
-        ,"modulo":"Información"
+        ,"modulo":"Informacion"
+        ,"titulo":"Información"
     }
 ]
