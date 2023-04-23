@@ -58,7 +58,7 @@
   {#if modulo === 'Inicio'||modulo === ''}
     <Inicio desde={modulo}></Inicio>
   {/if}
-  <!-- {#if modulo === 'Buscaminas'}
+  {#if modulo === 'Buscaminas'}
     <Buscaminas></Buscaminas>
-  {/if} -->
+  {/if}
 </section>

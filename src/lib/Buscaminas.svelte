@@ -1,4 +1,4 @@
-<!-- 
+
 <div id="menu" class="container">
     <div id="temporizador" class="timer">00:00</div>
     <div id="reinicio">boton reincio</div>
@@ -238,4 +238,4 @@
     });
 
     // metaBuscaminas(document.querySelector('#contenedor'))
-</script> -->
+</script>
