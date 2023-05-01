@@ -4,7 +4,7 @@
   import { onMount } from 'svelte';
   import itemesMenu from './assets/menuConfig.json';
   import Inicio from './lib/Inicio.svelte'
-  import Buscaminas from './lib/Buscaminas.svelte'
+  import Buscaminas from './lib/Buscaminas/Buscaminas.svelte'
   export let modulo = "";
   const j = window.$;
   onMount(()=>{
