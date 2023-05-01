@@ -7,8 +7,8 @@
     grid-template-columns: repeat(18, 0fr);
 }
 .celda{
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-color: #3f4047;
   border-width: 2.5px;
   border-style: solid;
@@ -16,11 +16,25 @@
   text-align: center;
 }
 .celda_libre{
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-color: #3f4047;
   border-width: 2.5px;
   border-style: solid;
   background-color: #c4c4c1;
   text-align: center;
+}
+.celda_libre p, img{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding:0px;
+}
+.celda_libre p{
+  font-size: 20px;
+  font-weight: 1000;
+}
+.celda_libre img{
+  width: 25px;
+  height: 25px;
+  padding:0px;
 }
