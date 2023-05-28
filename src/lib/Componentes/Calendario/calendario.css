@@ -5,6 +5,14 @@
     display: grid;
     grid-template-columns: repeat(7, 0fr);
 }
+.gridMes{
+    display: grid;
+    grid-template-columns: repeat(7, 0fr);
+}
+.gridMesesAno{
+    display: grid;
+    grid-template-columns: repeat(4, 0fr);
+}
 .mesActivo{
   visibility: visible;
 }
@@ -30,6 +38,50 @@
   border-style: solid;
   background-color: #faf6f6;
   text-align: center;
+}
+.mesAno_libre{
+  width: 210px;
+  height: 180px;
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #f2f1f1;
+  text-align: center;
+}
+.mesAno_actual{
+  width: 210px;
+  height: 180px;
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #f2b5ee !important;
+  text-align: center;
+}
+.mesAno_libre p{
+  margin-top: 35%;
+  font-size: 30px;
+}
+.mesAno_actual p{
+  margin-top: 35%;
+  font-size: 30px;
+}
+.dia_libre{
+  width: 120px;
+  height: 90px;
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #f2f1f1;
+  text-align: center;
+}
+.dia_actual{
+    width: 120px;
+    height: 90px;
+    border-color: #a2a4b4;
+    border-width: 2.5px;
+    border-style: solid;
+    background-color: #f2b5ee !important;
+    text-align: center;
 }
 .celda{
   width: 120px;
