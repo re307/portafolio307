@@ -26,6 +26,14 @@
             }
             htmlInsert = `<div class="${styleS}"><p>${mesesNombre[info.imprime.mes]}</p></div>`
             break;
+        case 3:
+            if (ano ===info.imprime) {
+                styleS = "mesAno_actual";
+            }else{
+                styleS = "mesAno_libre";
+            }
+            htmlInsert = `<div class="${styleS}"><p>${info.imprime}</p></div>`
+            break;
     
         default:
             break;

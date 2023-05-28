@@ -3,9 +3,11 @@
     import Celda from './Celda.svelte'
     const fechaActual = new Date();
     let infoImprimr = new Array();
-    let construye = 2;
+    let construye = 3;
+    let anosSumados = 12;
     let htmlInicial = ``;
     let mesInicial = fechaActual.getMonth()+1;
+    let anoInicial = fechaActual.getFullYear();
     let mes = fechaActual.getMonth()+1;
     let ano = fechaActual.getFullYear();
     let mesArray = (mesVisual_A)=>{
@@ -41,20 +43,64 @@
         let anoS = `${ano}`;
         let disminucion = Number(anoS[anoS.length-1])+1;
         let inicio = ano - disminucion;
-        for (let index = inicio; index < (inicio+10); index++) {
-            
+        for (let index = inicio; index < (inicio+anosSumados); index++) {
+            infoImprimr.push(index);
         }
     }
-    if (construye === 1) {
-        mesArray(mes);
+    let opcionesGenerar = (construye,mov)=>{
+        switch (construye) {
+            case 1:
+                switch (mov) {
+                    case 1:
+                        mesInicial=mesInicial+1;
+                        break;
+                    case 0:
+                        mesInicial=mesInicial-1;
+                        break;
+                    default:
+                        break;
+                }
+                mesArray(mesInicial);
+                break;
+            case 2:
+                switch (mov) {
+                    case 1:
+                        anoInicial=anoInicial+1;
+                        break;
+                    case 0:
+                        anoInicial=anoInicial-1;
+                        break;
+                    default:
+                        break;
+                }
+                mesesArray(anoInicial);
+                break;
+            case 3:
+                anoArray(ano);
+                break;
+        
+            default:
+                break;
+        }
     }
-    if (construye === 2) {
-        mesesArray(ano);
+    switch (construye) {
+        case 1:
+            mesArray(mes);
+            break;
+        case 2:
+            mesesArray(ano);
+            break;
+        case 3:
+            anoArray(ano);
+            break;
+    
+        default:
+            break;
     }
 </script>
 <div class="container sinpadding">
     <div class="row">
-        <div class="col-sm-4 previo btn-cand" on:click={()=>{mesInicial=mesInicial-1;mesVista(mesInicial)}}>Previo</div>
+        <div class="col-sm-4 previo btn-cand" on:click={()=>{mesVista(mesInicial)}}>Previo</div>
         <div class="col-sm-4 muestraInfoDe">{@html mesInicial}</div>
         <div class="col-sm-4 siguiente btn-cand" on:click={()=>{mesInicial=mesInicial+1;mesVista(mesInicial)}}>Siguiente</div>
     </div>
@@ -76,7 +122,7 @@
                 {/each}
             </div>
         {/if}
-        {#if construye === 2}
+        {#if ((construye === 2)||(construye === 3))}
             <div class="gridMesesAno col-sm-12">
                 {#each infoImprimr as data,i }
                     <Celda info={{
