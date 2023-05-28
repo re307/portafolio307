@@ -1,0 +1,54 @@
+.sinpadding [class*="col-"] {
+  padding: 0;
+}
+.gridDSMA{
+    display: grid;
+    grid-template-columns: repeat(7, 0fr);
+}
+.mesActivo{
+  visibility: visible;
+}
+.mesDesActivo{
+  visibility: hidden;
+}
+.muestraInfoDe{
+  text-align: center;
+  width: 24px;
+}
+.previo{
+  text-align: initial;
+}
+.siguiente{
+  text-align: end;
+  width: 375px;
+}
+.dia{
+  width: 120px;
+  height: 30px;
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #faf6f6;
+  text-align: center;
+}
+.celda{
+  width: 120px;
+  height: 90px;
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #f2f1f1;
+  text-align: center;
+}
+.actual{
+    width: 120px;
+    height: 90px;
+    border-color: #a2a4b4;
+    border-width: 2.5px;
+    border-style: solid;
+    background-color: #f2b5ee !important;
+    text-align: center;
+}
+.btn-cand{
+  cursor: pointer;
+}

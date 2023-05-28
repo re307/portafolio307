@@ -31,8 +31,15 @@
     {
         "id":3
         ,"icon":"fas fa-th"
-        ,"modulo":"Dasboard"
-        ,"titulo":"Dasboard"
+        ,"modulo":"Componentes"
+        ,"titulo":"Componentes"
+        ,"submenu":[
+            {
+                "id":1
+                ,"submodulo":"Calendario"
+                ,"titulo":"Calendario"
+            }
+        ]
     },
     {
         "id":4

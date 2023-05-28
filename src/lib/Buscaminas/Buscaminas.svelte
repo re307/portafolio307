@@ -1,18 +1,25 @@
 <script>
     import './buscaminas.css'
     import Celda from './Celda.svelte'
+    export let recarga;
     let largo = 18;
     let totalCeldas = largo * 18;
     let filas = new Array(totalCeldas);
     let celdasBombas = new Array();
     let vecinasBombas = new Array();
+    // @ts-ignore
     let conunt = 0;
 
-    let totalBombas = Math.round(totalCeldas / 8);
-    for (let index = 1; index <= totalBombas; index++) {
-        let celdaBomba = Math.floor(Math.random() * totalCeldas) + 1;
-        celdasBombas.push(celdaBomba);
+    if (recarga) {
+        let totalBombas = Math.round(totalCeldas / 8);
+        celdasBombas = new Array();
+        for (let index = 1; index <= totalBombas; index++) {
+            let celdaBomba = Math.floor(Math.random() * totalCeldas) + 1;
+            celdasBombas.push(celdaBomba);
+        } 
+        //this.ejecutaCreacion();
     }
+    // recarga = false;
     let isBorde = (celda) =>{
         let result = false;
         if (celda%largo<2) {
@@ -130,23 +137,33 @@
         }
         return color;
     }
+    let reinicio = ()=>{
+        recarga = false;
+        setTimeout(()=>{
+            recarga = true;
+            // ejecutaCreacion();
+        },1000);
+    }
 </script>
 <div class="container juego_b">
     <div class="row marcador">
         macador
+        <div class="btn btn-dark" on:click={()=>{reinicio()}}>Clik</div>
     </div>
     <div id="tablero" class="row tablero">
-        {#each filas as fila,i }
-            <Celda data={{
-                "numero":i+1,
-                "largo":largo,
-                "ancho":totalCeldas,
-                "vecinas":vecindad(i+1),
-                "isBomba":celdasBombas.includes(i+1),
-                "bombas":celdasBombas
-            }}>
-            </Celda>
-        {/each}
+        {#if recarga}
+            {#each filas as fila,i }
+                <Celda data={{
+                    "numero":i+1,
+                    "largo":largo,
+                    "ancho":totalCeldas,
+                    "vecinas":vecindad(i+1),
+                    "isBomba":celdasBombas.includes(i+1),
+                    "bombas":celdasBombas
+                }}>
+                </Celda>
+            {/each}
+        {/if}
     </div>
     {ejecutaCreacion()}
 </div>

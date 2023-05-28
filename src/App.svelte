@@ -5,6 +5,7 @@
   import itemesMenu from './assets/menuConfig.json';
   import Inicio from './lib/Inicio.svelte'
   import Buscaminas from './lib/Buscaminas/Buscaminas.svelte'
+  import Calendario from './lib/Componentes/Calendario/Calendario.svelte'
   export let modulo = "";
   const j = window.$;
   onMount(()=>{
@@ -54,11 +55,14 @@
     {/each}
   </div>
 </div>
-<section class="main" id="main">
+<div class="main" id="main">
   {#if modulo === 'Inicio'||modulo === ''}
     <Inicio desde={modulo}></Inicio>
   {/if}
   {#if modulo === 'Buscaminas'}
-    <Buscaminas></Buscaminas>
+    <Buscaminas recarga={true}></Buscaminas>
   {/if}
-</section>
+  {#if modulo === "Calendario"}
+    <Calendario></Calendario>
+  {/if}
+</div>
