@@ -3,9 +3,11 @@
     import Celda from './Celda.svelte'
     const fechaActual = new Date();
     let infoImprimr = new Array();
-    let construye = 3;
+    let construye = 1;
     let anosSumados = 12;
+    const mesesNombre = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
     let htmlInicial = ``;
+    let etiqueta = '';
     let mesInicial = fechaActual.getMonth()+1;
     let anoInicial = fechaActual.getFullYear();
     let mes = fechaActual.getMonth()+1;
@@ -76,7 +78,36 @@
                 mesesArray(anoInicial);
                 break;
             case 3:
+                switch (mov) {
+                    case 1:
+                        anoInicial=anoInicial+anosSumados;
+                        break;
+                    case 0:
+                        anoInicial=anoInicial-anosSumados;
+                        break;
+                    default:
+                        break;
+                }
+                anoArray(anoInicial);
+                break;
+        
+            default:
+                break;
+        }
+    }
+    let selecionaCalen = ()=>{
+        switch (construye) {
+            case 1:
+                mesArray(mes);
+                etiqueta = mesesNombre[mes-1]
+                break;
+            case 2:
+                mesesArray(ano);
+                etiqueta = `${ano}`
+                break;
+            case 3:
                 anoArray(ano);
+                etiqueta = `${ano}`
                 break;
         
             default:
@@ -86,12 +117,15 @@
     switch (construye) {
         case 1:
             mesArray(mes);
+            etiqueta = mesesNombre[mes-1]
             break;
         case 2:
             mesesArray(ano);
+            etiqueta = `${ano}`
             break;
         case 3:
             anoArray(ano);
+            etiqueta = `${ano}`
             break;
     
         default:
@@ -100,11 +134,11 @@
 </script>
 <div class="container sinpadding">
     <div class="row">
-        <div class="col-sm-4 previo btn-cand" on:click={()=>{mesVista(mesInicial)}}>Previo</div>
-        <div class="col-sm-4 muestraInfoDe">{@html mesInicial}</div>
-        <div class="col-sm-4 siguiente btn-cand" on:click={()=>{mesInicial=mesInicial+1;mesVista(mesInicial)}}>Siguiente</div>
+        <div class="col-sm-4 previo btn-cand" on:click={()=>{}}>Previo</div>
+        <div class="col-sm-4 muestraInfoDe" on:click={()=>{construye = (construye<4?construye+1:1);selecionaCalen();}}>{@html etiqueta}</div>
+        <div class="col-sm-4 siguiente btn-cand" on:click={()=>{}}>Siguiente</div>
     </div>
-    <div class="row">
+    <div class="row" id="calendario">
         {#if construye === 1}
             <div class="gridMes col-sm-12">
                 <div class="dia">do.</div>
