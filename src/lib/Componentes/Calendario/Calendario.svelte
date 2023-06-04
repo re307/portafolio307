@@ -13,6 +13,7 @@
     let mes = fechaActual.getMonth()+1;
     let ano = fechaActual.getFullYear();
     let mesArray = (mesVisual_A)=>{
+        infoImprimr = new Array();
         let mesPintar_A;
         let mesNumero_A = mesVisual_A;
         if (mesNumero_A == 13) {
@@ -33,6 +34,7 @@
         }
     }
     let mesesArray = (ano)=>{
+        infoImprimr = new Array();
         for (let index = 0; index < 12; index++) {
             let infoMes = {
                 "ano":ano,
@@ -42,6 +44,7 @@
         }
     }
     let anoArray = (ano)=>{
+        infoImprimr = new Array();
         let anoS = `${ano}`;
         let disminucion = Number(anoS[anoS.length-1])+1;
         let inicio = ano - disminucion;
@@ -96,20 +99,23 @@
         }
     }
     let selecionaCalen = ()=>{
+        construye = (construye<3?construye+1:construye);
         switch (construye) {
             case 1:
+                //document.getElementById("calenAno").outerHTML = "";
                 mesArray(mes);
                 etiqueta = mesesNombre[mes-1]
                 break;
             case 2:
+                //document.getElementById("calenMes").outerHTML = "";
                 mesesArray(ano);
                 etiqueta = `${ano}`
                 break;
             case 3:
+                //document.getElementById("calenMeses").outerHTML = "";
                 anoArray(ano);
                 etiqueta = `${ano}`
                 break;
-        
             default:
                 break;
         }
@@ -133,14 +139,15 @@
     }
 </script>
 <div class="container sinpadding">
+    {@html construye}
     <div class="row">
         <div class="col-sm-4 previo btn-cand" on:click={()=>{}}>Previo</div>
-        <div class="col-sm-4 muestraInfoDe" on:click={()=>{construye = (construye<4?construye+1:1);selecionaCalen();}}>{@html etiqueta}</div>
+        <div class="col-sm-4 muestraInfoDe" on:click={()=>{selecionaCalen();}}>{@html etiqueta}</div>
         <div class="col-sm-4 siguiente btn-cand" on:click={()=>{}}>Siguiente</div>
     </div>
-    <div class="row" id="calendario">
+    <div class="row">
         {#if construye === 1}
-            <div class="gridMes col-sm-12">
+            <div class="gridMes col-sm-12" id="calenMes">
                 <div class="dia">do.</div>
                 <div class="dia">lu.</div>
                 <div class="dia">ma.</div>
@@ -156,8 +163,18 @@
                 {/each}
             </div>
         {/if}
-        {#if ((construye === 2)||(construye === 3))}
-            <div class="gridMesesAno col-sm-12">
+        {#if construye === 2}
+            <div class="gridMesesAno col-sm-12" id="calenMeses">
+                {#each infoImprimr as data,i }
+                    <Celda info={{
+                        "seleccionado":construye,
+                        "imprime":data
+                    }}></Celda>
+                {/each}
+            </div>
+        {/if}
+        {#if construye === 3}
+            <div class="gridMesesAno col-sm-12" id="calenAno">
                 {#each infoImprimr as data,i }
                     <Celda info={{
                         "seleccionado":construye,

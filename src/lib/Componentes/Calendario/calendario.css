@@ -48,6 +48,10 @@
   background-color: #f2f1f1;
   text-align: center;
 }
+.mesAno_libre:hover{
+  background-color: #7df0e3;
+  cursor: pointer;
+}
 .mesAno_actual{
   width: 210px;
   height: 180px;
@@ -73,6 +77,10 @@
   border-style: solid;
   background-color: #f2f1f1;
   text-align: center;
+}
+.dia_libre:hover{
+  background-color: #7df0e3;
+  cursor: pointer;
 }
 .dia_actual{
     width: 120px;
