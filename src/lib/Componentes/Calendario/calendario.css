@@ -20,15 +20,28 @@
   visibility: hidden;
 }
 .muestraInfoDe{
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #faf6f6;
   text-align: center;
-  width: 24px;
+  width: 140px;
 }
 .previo{
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #faf6f6;
   text-align: initial;
+  width: 350px;
 }
 .siguiente{
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #faf6f6;
   text-align: end;
-  width: 375px;
+  width: 350px;
 }
 .dia{
   width: 120px;

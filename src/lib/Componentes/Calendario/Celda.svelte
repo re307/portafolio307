@@ -1,12 +1,16 @@
 <script>
 
     export let info;
+    export let selecionaCalenHijo;
+    export let calendario = info.seleccionado;
+    
 
     const hoy = new Date();
     const mesActual = hoy.getMonth();
     const ano = hoy.getFullYear();
     const mesesNombre = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
     let fechaIngresada = new Date(info.imprime);
+    console.log('fechaIngresada: ',fechaIngresada.toString());
     let styleS = null;
     let htmlInsert = null;
     switch (info.seleccionado) {
@@ -16,7 +20,7 @@
             }else{
                 styleS = "dia_libre";
             }
-            htmlInsert = `<div class="${styleS}">${fechaIngresada.getDate()}</div>`
+            htmlInsert = fechaIngresada.getDate()
             break;
         case 2:
             if (mesActual === info.imprime.mes&&ano ===info.imprime.ano) {
@@ -24,7 +28,7 @@
             }else{
                 styleS = "mesAno_libre";
             }
-            htmlInsert = `<div class="${styleS}"><p>${mesesNombre[info.imprime.mes]}</p></div>`
+            htmlInsert = `<p>${mesesNombre[info.imprime.mes]}</p>`
             break;
         case 3:
             if (ano ===info.imprime) {
@@ -32,12 +36,16 @@
             }else{
                 styleS = "mesAno_libre";
             }
-            htmlInsert = `<div class="${styleS}"><p>${info.imprime}</p></div>`
+            htmlInsert = `<p>${info.imprime}</p>`
             break;
     
         default:
             break;
     }
-
+    let validaEcucion = ()=>{
+        if (info.seleccionado > 1) {
+            calendario = info.seleccionado-1;
+        }
+    }
 </script>
-{@html htmlInsert}
+<div on:click={()=>{validaEcucion(),selecionaCalenHijo()}} class="{styleS}">{@html htmlInsert}</div>
