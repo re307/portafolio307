@@ -37,7 +37,7 @@
 >
     <div style="display: {liberada?'block':'none'};">
         {#if data.isBomba}
-            <img src="{boom}" class="logo" alt="Vite logo" />
+            <img src="{boom}"/>
         {:else}
             <p id="cercania{data.numero}">{cercania>0?cercania:""}</p>
         {/if}

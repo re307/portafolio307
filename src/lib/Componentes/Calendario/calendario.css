@@ -83,44 +83,52 @@
   font-size: 30px;
 }
 .dia_libre{
+  font-size: 25px;
   width: 120px;
   height: 90px;
   border-color: #a2a4b4;
   border-width: 2.5px;
   border-style: solid;
-  background-color: #f2f1f1;
+  background-color: #a7999934;
+  text-align: center;
+}
+.dia_libre_fuera{
+  font-size: 25px;
+  width: 120px;
+  height: 90px;
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #fdfcfc;
   text-align: center;
 }
 .dia_libre:hover{
   background-color: #7df0e3;
   cursor: pointer;
 }
-.dia_actual{
-    width: 120px;
-    height: 90px;
-    border-color: #a2a4b4;
-    border-width: 2.5px;
-    border-style: solid;
-    background-color: #f2b5ee !important;
-    text-align: center;
+.dia_libre_fuera:hover{
+  background-color: #def6f3;
+  cursor: pointer;
 }
-.celda{
+.dia_actual{
+  font-size: 25px;
   width: 120px;
   height: 90px;
   border-color: #a2a4b4;
   border-width: 2.5px;
   border-style: solid;
-  background-color: #f2f1f1;
+  background-color: #f2b5ee !important;
   text-align: center;
 }
-.actual{
-    width: 120px;
-    height: 90px;
-    border-color: #a2a4b4;
-    border-width: 2.5px;
-    border-style: solid;
-    background-color: #f2b5ee !important;
-    text-align: center;
+.dia_actual_select{
+  font-size: 25px;
+  width: 120px;
+  height: 90px;
+  border-color: #a2a4b4;
+  border-width: 2.5px;
+  border-style: solid;
+  background-color: #7df0e3 !important;
+  text-align: center;
 }
 .btn-cand{
   cursor: pointer;
