@@ -1,5 +1,4 @@
 .juego_b{
-    margin-top: 25vh;
     align-content: center;
 }
 .tablero{
@@ -7,8 +6,8 @@
     grid-template-columns: repeat(18, 0fr);
 }
 .celda{
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-color: #3f4047;
   border-width: 2.5px;
   border-style: solid;
@@ -34,7 +33,13 @@
   font-weight: 1000;
 }
 .celda img{
-  width: 25px;
+  width: 30px;
   height: 25px;
   padding:0px;
+}
+.center {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-top: 2.5px;
 }

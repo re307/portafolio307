@@ -1,119 +1,17 @@
 <script>
     import './buscaminas.css'
-    import Celda from './Celda.svelte'
+    import boom from '../../assets/boom.png'
     export let recarga;
     let largo = 18;
+    let ancho = largo;
     let totalCeldas = largo * 18;
-    let filas = new Array(totalCeldas);
+    let celdas = new Array();
     let celdasBombas = new Array();
     let vecinasBombas = new Array();
+    let displayBoom = "none";
+    let htmlHijo = null;
     // @ts-ignore
     let conunt = 0;
-
-    if (recarga) {
-        let totalBombas = Math.round(totalCeldas / 8);
-        celdasBombas = new Array();
-        for (let index = 1; index <= totalBombas; index++) {
-            let celdaBomba = Math.floor(Math.random() * totalCeldas) + 1;
-            celdasBombas.push(celdaBomba);
-        } 
-        //this.ejecutaCreacion();
-    }
-    // recarga = false;
-    let isBorde = (celda) =>{
-        let result = false;
-        if (celda%largo<2) {
-            result = true;
-        }
-        return result;
-    }
-    let isBordeIzquierdo = (celda) =>{
-        let result = false;
-        if (celda%largo == 1) {
-            result = true;
-        }
-        return result;
-    }
-    let isBordeDerecho = (celda) =>{
-        let result = false;
-        if (celda%largo == 0) {
-            result = true;
-        }
-        return result;
-    }
-    let isBordeSuperior = (celda)=>{
-        let result = false;
-        if ((celda-largo)<1) {
-            result = true;
-        }
-        return result
-    }
-    let isBordeInferior = (celda)=>{
-        let result = false;
-        if ((largo+celda)>totalCeldas) {
-            result = true;
-        }
-        return result
-    }
-    let vecindad = (Celda)=>{
-        let vecinas;
-        if (isBorde(Celda)) {
-            if (isBordeIzquierdo(Celda)) {
-                if (isBordeSuperior(Celda)) {
-                    vecinas = [(Celda+1),(Celda+(largo+1)),Celda+largo];
-                }else
-                    if (isBordeInferior(Celda)) {
-                        vecinas = [(Celda+1),(Celda-largo),(Celda-(largo+1))];
-                    }else{
-                        vecinas = [(Celda+1),(Celda+(largo+1)),Celda+largo,(Celda-largo),((Celda-largo)+1)];
-                    }
-                
-            }else
-                if (isBordeDerecho(Celda)) {
-                    if (isBordeSuperior(Celda)) {
-                        vecinas = [(Celda+largo),((Celda+largo)-1),(Celda-1)]
-                    }else
-                        if (isBordeInferior(Celda)) {
-                            vecinas = [(Celda-1),((Celda-largo)-1),(Celda-largo)]
-                        }else{
-                            vecinas = [(Celda+largo),((Celda+largo)-1),(Celda-1),((Celda-largo)-1),(Celda-largo)]
-                        }
-                    
-                }
-        }else{
-            if (isBordeSuperior(Celda)) {
-                    vecinas = [(Celda+1),((Celda+largo)+1),(Celda+largo),((Celda+largo)-1),(Celda-1)]
-            }else
-                if (isBordeInferior(Celda)) {
-                    vecinas = [(Celda+1),(Celda-1),((Celda-largo)-1),(Celda-largo),((Celda-largo)+1)]
-                }else{
-                    vecinas = [(Celda+1),((Celda+largo)+1),(Celda+largo),((Celda+largo)-1),(Celda-1),((Celda-largo)-1),(Celda-largo),((Celda-largo)+1)]
-                }
-        }
-        if (celdasBombas.includes(Celda)) {
-            vecinasBombas[Celda]=vecinas;
-        }
-        return vecinas;
-    }
-    let ejecutaCreacion = ()=>{
-        setTimeout(()=>{
-            console.log(celdasBombas);
-            console.log(vecinasBombas);
-            vecinasBombas.forEach((vecinas)=>{
-                vecinas.forEach((vecina)=>{
-                        if (!celdasBombas.includes(vecina)) {
-                            let celdaCercania = document.getElementById(`cercania${vecina}`);
-                            // console.log(celdaCercania);
-                            let cercania = celdaCercania.innerText;
-                            let cantidad = Number(cercania);
-                            cantidad = cantidad+1;
-                            celdaCercania.innerText = `${cantidad}`;
-                            celdaCercania.style.color = determinaColor(cantidad);
-                        }
-                });
-            });
-        },1000);
-    }
     let determinaColor = (cercania)=>{
         let color = "";
         switch (cercania) {
@@ -137,33 +35,109 @@
         }
         return color;
     }
-    let reinicio = ()=>{
-        recarga = false;
-        setTimeout(()=>{
-            recarga = true;
-            // ejecutaCreacion();
-        },1000);
+    const isborde = (celda)=>{
+        let esborde = 0;
+
+        if ((celda%largo === 0)) {
+            esborde = 1;
+        } else {
+            if (celda%largo === (largo-1)) {
+                esborde = 2;
+            }
+            //console.log(`la celda: ${celda} es una bomba fuera de los laterales`);
+        }
+
+        return esborde;
     }
+    const celdaAccion = (infoCelda)=>{
+        console.log(infoCelda);
+        if (infoCelda.isBoom) {
+            displayBoom = "flex";
+        }
+    }
+    const ejecutaPrograma = ()=>{
+        celdas = new Array();
+        celdasBombas = new Array();
+        vecinasBombas = new Array();
+        displayBoom = "none";
+        let totalBombas = Math.round(totalCeldas / 8);
+        for (let index = 1; index <= totalBombas; index++) {
+            let celdaBomba = Math.floor(Math.random() * totalCeldas) + 1;
+            celdasBombas.push(celdaBomba);
+        }
+        console.log(celdasBombas);
+        for (let index = 0; index < totalCeldas; index++) {
+            let isBoom = celdasBombas.includes(index);
+            let cercania = 0;
+            let infoCelda = {
+                isBoom:isBoom
+                ,cercania:cercania
+            }
+            celdas.push(infoCelda);
+        }
+        celdasBombas.forEach((value)=>{
+            let borde = isborde(value);
+            let superior = ((value-largo)>0?false:true);
+            let inferior = ((value+largo)<totalCeldas?false:true);
+            switch (borde) {
+                case 0:
+                    if (!superior) {
+                        celdas[value-(largo-1)].cercania = celdas[value-(largo-1)].cercania+1
+                        celdas[value-largo].cercania = celdas[value-largo].cercania+1
+                        celdas[value-(largo+1)].cercania = celdas[value-(largo+1)].cercania+1
+                    }
+                    celdas[value+1].cercania = celdas[value+1].cercania+1
+                    if (!inferior) {
+                        celdas[value+(largo-1)].cercania = celdas[value+(largo-1)].cercania+1
+                        celdas[value+largo].cercania = celdas[value+largo].cercania+1
+                        celdas[value+(largo+1)].cercania = celdas[value+(largo+1)].cercania+1
+                    }
+                    celdas[value-1].cercania = celdas[value-1].cercania+1
+                    break;
+                case 1:
+                    if (!superior) {
+                        celdas[value-largo].cercania = celdas[value-largo].cercania+1
+                        celdas[value-(largo+1)].cercania = celdas[value-(largo+1)].cercania+1
+                    }
+                    celdas[value+1].cercania = celdas[value+1].cercania+1
+                    if (!inferior) {
+                        celdas[value+largo].cercania = celdas[value+largo].cercania+1
+                        celdas[value+(largo+1)].cercania = celdas[value+(largo+1)].cercania+1
+                    }
+                    break;
+                case 2:
+                    if (!superior) {
+                        celdas[value-(largo-1)].cercania = celdas[value-(largo-1)].cercania+1
+                        celdas[value-largo].cercania = celdas[value-largo].cercania+1
+                    }
+                    if (!inferior) {
+                        celdas[value+(largo-1)].cercania = celdas[value+(largo-1)].cercania+1
+                        celdas[value+largo].cercania = celdas[value+largo].cercania+1
+                    }
+                    celdas[value-1].cercania = celdas[value-1].cercania+1
+                    break;
+            
+                default:
+                    break;
+            }
+        });
+    }
+    ejecutaPrograma();
 </script>
 <div class="container juego_b">
     <div class="row marcador">
         macador
-        <div class="btn btn-dark" on:click={()=>{reinicio()}}>Clik</div>
+        <div class="btn btn-dark" on:click={()=>{ejecutaPrograma()}}>Clik</div>
     </div>
     <div id="tablero" class="row tablero">
-        {#if recarga}
-            {#each filas as fila,i }
-                <Celda data={{
-                    "numero":i+1,
-                    "largo":largo,
-                    "ancho":totalCeldas,
-                    "vecinas":vecindad(i+1),
-                    "isBomba":celdasBombas.includes(i+1),
-                    "bombas":celdasBombas
-                }}>
-                </Celda>
-            {/each}
-        {/if}
+        {#each celdas as celda }
+            <div class="celda" on:click={()=>{celdaAccion(celda)}}>
+                {#if celda.isBoom}
+                    <div class="center" style="display:{displayBoom}"><img src="{boom}"/></div>
+                {:else}
+                    <p>{celda.cercania}</p>
+                {/if}
+            </div>
+        {/each}
     </div>
-    {ejecutaCreacion()}
 </div>
