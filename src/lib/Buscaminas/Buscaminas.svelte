@@ -44,15 +44,23 @@
             if (celda%largo === (largo-1)) {
                 esborde = 2;
             }
-            //console.log(`la celda: ${celda} es una bomba fuera de los laterales`);
         }
 
         return esborde;
     }
-    const celdaAccion = (infoCelda)=>{
+    const celdaAccion = (infoCelda,id)=>{
         console.log(infoCelda);
+        let celdaClick = document.getElementById(`ui${id}`);
+        celdaClick.className = "celda_libre"
         if (infoCelda.isBoom) {
             displayBoom = "flex";
+        }else{
+            if (infoCelda.vecinas !== undefined ) {
+                for (let index = 0; index < infoCelda.vecinas.length; index++) {
+                    const idVecina = index;
+                    document.getElementById(`ui${idVecina}`).click();
+                }
+            }
         }
     }
     const ejecutaPrograma = ()=>{
@@ -72,10 +80,12 @@
             let infoCelda = {
                 isBoom:isBoom
                 ,cercania:cercania
+                ,aperturada:false
             }
             celdas.push(infoCelda);
         }
-        celdasBombas.forEach((value)=>{
+        for (let index = 0; index < celdasBombas.length; index++) {
+            const value = celdasBombas[index];
             let borde = isborde(value);
             let superior = ((value-largo)>0?false:true);
             let inferior = ((value+largo)<totalCeldas?false:true);
@@ -120,7 +130,72 @@
                 default:
                     break;
             }
-        });
+            
+        }
+        const dataCelda = (value) =>{
+            let arrayCeldas = new Array();
+            let borde = isborde(value);
+            let superior = ((value-largo)>0?false:true);
+            let inferior = ((value+largo)<totalCeldas?false:true);
+            arrayCeldas.push(borde,superior,inferior);
+            return arrayCeldas;
+        }
+        const evaluaVecindad = (value)=>{
+            let arrayCeldas = new Array();
+            let borde = isborde(value);
+            let superior = ((value-largo)>0?false:true);
+            let inferior = ((value+largo)<totalCeldas?false:true);
+            switch (borde) {
+                case 0:
+                    if (!superior) {
+                        arrayCeldas.push(value-(largo-1));
+                        arrayCeldas.push(value-largo);
+                        arrayCeldas.push(value-(largo+1));
+                    }
+                    arrayCeldas.push(value+1);
+                    if (!inferior) {
+                        arrayCeldas.push(value+(largo-1));
+                        arrayCeldas.push(value+largo);
+                        arrayCeldas.push(value+(largo+1));
+                    }
+                    arrayCeldas.push(value-1);
+                    break;
+                case 1:
+                    if (!superior) {
+                        arrayCeldas.push(value-largo);
+                        arrayCeldas.push(value-(largo+1));
+                    }
+                    arrayCeldas.push(value+1);
+                    if (!inferior) {
+                        arrayCeldas.push(value+largo);
+                        arrayCeldas.push(value+(largo+1));
+                    }
+                    break;
+
+                case 2:
+                    if (!superior) {
+                        arrayCeldas.push(value-(largo-1));
+                        arrayCeldas.push(value-largo);
+                    }
+                    if (!inferior) {
+                        arrayCeldas.push(value+(largo-1));
+                        arrayCeldas.push(value+largo);
+                    }
+                    arrayCeldas.push(value-1);
+                    break;
+            
+                default:
+                    break;
+            }
+            return arrayCeldas;
+        }
+        for (let index = 0; index < celdas.length; index++) {
+            const celda = celdas[index];
+            celda.dataCelda = dataCelda(index);
+            if (!celda.isBoom&&(celda.cercania == 0)) {
+                celda.vecinas = evaluaVecindad(index);
+            }
+        }
     }
     ejecutaPrograma();
 </script>
@@ -130,8 +205,8 @@
         <div class="btn btn-dark" on:click={()=>{ejecutaPrograma()}}>Clik</div>
     </div>
     <div id="tablero" class="row tablero">
-        {#each celdas as celda }
-            <div class="celda" on:click={()=>{celdaAccion(celda)}}>
+        {#each celdas as celda,index }
+            <div class="celda" id="ui{index}" on:click={()=>{celdaAccion(celda,index)}}>
                 {#if celda.isBoom}
                     <div class="center" style="display:{displayBoom}"><img src="{boom}"/></div>
                 {:else}

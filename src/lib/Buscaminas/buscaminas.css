@@ -13,15 +13,17 @@
   border-style: solid;
   background-color: #726b6b;
   text-align: center;
+  cursor: pointer;
 }
 .celda_libre{
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-color: #3f4047;
   border-width: 2.5px;
   border-style: solid;
   background-color: #c4c4c1;
   text-align: center;
+  cursor: pointer;
 }
 .celda_libre p, img{
   margin-top: 0px;
