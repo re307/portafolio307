@@ -3,7 +3,7 @@
 }
 .tablero{
     display: grid;
-    grid-template-columns: repeat(18, 0fr);
+    grid-template-columns: repeat(8, 0fr);
 }
 .celda{
   width: 40px;

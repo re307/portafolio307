@@ -2,13 +2,14 @@
     import './buscaminas.css'
     import boom from '../../assets/boom.png'
     export let recarga;
-    let largo = 18;
+    let largo = 8;
     let ancho = largo;
-    let totalCeldas = largo * 18;
+    let totalCeldas = largo * 8;
     let celdas = new Array();
     let celdasBombas = new Array();
     let vecinasBombas = new Array();
     let displayBoom = "none";
+    let celda_Class = null;
     let htmlHijo = null;
     // @ts-ignore
     let conunt = 0;
@@ -49,24 +50,43 @@
         return esborde;
     }
     const celdaAccion = (infoCelda,id)=>{
-        console.log(infoCelda);
         let celdaClick = document.getElementById(`ui${id}`);
-        celdaClick.className = "celda_libre"
         if (infoCelda.isBoom) {
+            celdaClick.className = "celda_libre";
             displayBoom = "flex";
         }else{
-            if (infoCelda.vecinas !== undefined ) {
-                for (let index = 0; index < infoCelda.vecinas.length; index++) {
-                    const idVecina = index;
-                    document.getElementById(`ui${idVecina}`).click();
+            if (!celdas[id].aperturada) {
+                console.log(infoCelda);
+                celdaClick.className = "celda_libre";
+                celdas[id].aperturada = true;
+                if (infoCelda.vecinas !== undefined ) {
+                    for (let index = 0; index < infoCelda.vecinas.length; index++) {
+                        const idVecina = infoCelda.vecinas[index];
+                        if (!celdasBombas.includes(idVecina)) {
+                            document.getElementById(`ui${idVecina}`).click();
+                        }else{
+
+                        }
+                    }
                 }
             }
         }
     }
-    const ejecutaPrograma = ()=>{
+    const ejecutaPrograma = (recarga = false)=>{
+        if (recarga) {
+            // document.getElementById("tablero").innerHTML = '';
+            let divAbiertos = document.getElementsByClassName('celda_libre');
+            for (let index = 0; index < divAbiertos.length; index++) {
+                const element = divAbiertos[index];
+                console.log('divAbierto: ',element);
+                element.className = "celda";
+                
+            }
+        }
         celdas = new Array();
         celdasBombas = new Array();
         vecinasBombas = new Array();
+        celda_Class = "celda";
         displayBoom = "none";
         let totalBombas = Math.round(totalCeldas / 8);
         for (let index = 1; index <= totalBombas; index++) {
@@ -78,7 +98,8 @@
             let isBoom = celdasBombas.includes(index);
             let cercania = 0;
             let infoCelda = {
-                isBoom:isBoom
+                celda_Id:index
+                ,isBoom:isBoom
                 ,cercania:cercania
                 ,aperturada:false
             }
@@ -202,11 +223,11 @@
 <div class="container juego_b">
     <div class="row marcador">
         macador
-        <div class="btn btn-dark" on:click={()=>{ejecutaPrograma()}}>Clik</div>
+        <div class="btn btn-dark" on:click={()=>{ejecutaPrograma(true)}}>Clik</div>
     </div>
     <div id="tablero" class="row tablero">
         {#each celdas as celda,index }
-            <div class="celda" id="ui{index}" on:click={()=>{celdaAccion(celda,index)}}>
+            <div class="{celda_Class}" id="ui{index}" on:click={()=>{celdaAccion(celda,index)}}>
                 {#if celda.isBoom}
                     <div class="center" style="display:{displayBoom}"><img src="{boom}"/></div>
                 {:else}
