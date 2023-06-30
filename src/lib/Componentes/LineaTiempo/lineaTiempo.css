@@ -1,0 +1,31 @@
+.container{
+    margin: 50px !important;
+    width: 80% !important;
+}
+h2{
+    margin-bottom: 5px;
+}
+.box{
+    margin-bottom: 10px;
+    display: flow-root;
+    position: relative;
+}
+.box::before{
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 125%;
+    background: rebeccapurple;
+    left: -41px;
+    top: -30px;
+}
+.box::after{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rebeccapurple;
+    left: -50px;
+    top: 11px;
+}

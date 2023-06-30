@@ -38,6 +38,11 @@
                 "id":1
                 ,"submodulo":"Calendario"
                 ,"titulo":"Calendario"
+            },
+            {
+                "id":2
+                ,"submodulo":"LineaTiempo"
+                ,"titulo":"Línea de tiempo"
             }
         ]
     },
