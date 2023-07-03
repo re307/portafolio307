@@ -31,3 +31,9 @@
 <div class="container">
     {@html continerBoxs}
 </div>
+<div class="container">
+    <div class="box-2">
+        <div class="circulo-info">Circulo</div>
+        <div class="info_contenedor">Info</div>
+    </div>
+</div>
