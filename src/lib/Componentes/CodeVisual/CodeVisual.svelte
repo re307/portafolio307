@@ -20,7 +20,6 @@
             <div class="token-line _34NUj">
                 <div aria-hidden="true" class="_1UDBA">3</div>
                 <div class="_3GF8E">
-                    <span class="token plain"></span>
                     <span class="token keyword keyword-const">const</span>
                     <span class="token plain"> customer </span>
                     <span class="token operator">=</span>
@@ -304,7 +303,6 @@
             <div class="token-line _34NUj">
                 <div aria-hidden="true" class="_1UDBA">20</div>
                 <div class="_3GF8E">
-                    <span class="token plain"></span>
                     <span class="token punctuation">]</span>
                     <span class="token punctuation">;</span>
                     <span class="token plain"></span>
@@ -352,7 +350,6 @@
             <div class="token-line _34NUj">
                 <div aria-hidden="true" class="_1UDBA">24</div>
                 <div class="_3GF8E">
-                    <span class="token plain"></span>
                     <span class="token keyword keyword-await">await</span>
                     <span class="token plain"> customer</span>
                     <span class="token punctuation">.</span>
@@ -384,7 +381,6 @@
             <div class="token-line _34NUj">
                 <div aria-hidden="true" class="_1UDBA">26</div>
                 <div class="_3GF8E">
-                    <span class="token plain"></span>
                     <span class="token punctuation">}</span>
                     <span class="token punctuation">)</span>
                     <span class="token punctuation">;</span>
