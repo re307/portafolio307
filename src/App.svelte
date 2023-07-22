@@ -5,6 +5,7 @@
   import itemesMenu from './assets/menuConfig.json';
   import Inicio from './lib/Inicio.svelte'
   import Buscaminas from './lib/Buscaminas/Buscaminas.svelte'
+  import CodeVisual from './lib/Componentes/CodeVisual/CodeVisual.svelte'
   import Calendario from './lib/Componentes/Calendario/Calendario.svelte'
   import LineaTiempo from './lib/Componentes/LineaTiempo/LineaTiempo.svelte'
   export let modulo = "";
@@ -66,7 +67,7 @@
   {#if modulo === "Calendario"}
     <Calendario></Calendario>
   {/if}
-  {#if modulo === "LineaTiempo"}
-    <LineaTiempo></LineaTiempo>
+  {#if modulo === "VizualizarCode"}
+    <CodeVisual></CodeVisual>
   {/if}
 </div>

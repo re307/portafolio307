@@ -43,6 +43,11 @@
                 "id":2
                 ,"submodulo":"LineaTiempo"
                 ,"titulo":"Línea de tiempo"
+            },
+            {
+                "id":3
+                ,"submodulo":"VizualizarCode"
+                ,"titulo":"Código"
             }
         ]
     },
