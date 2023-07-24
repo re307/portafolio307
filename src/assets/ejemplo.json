@@ -1,0 +1,19 @@
+[{
+    "id":1
+    ,"icon":"fas fa-desktop"
+    ,"modulo":"Inicio"
+    ,"titulo":"Inicio"
+    ,"cancelar":false
+},{
+    "id":2
+    ,"icon":"fas fa-desktop"
+    ,"modulo":"Inicio"
+    ,"titulo":"Inicio"
+    ,"cancelar":true
+},{
+    "id":3
+    ,"icon":"fas fa-desktop"
+    ,"modulo":"Inicio"
+    ,"titulo":"Inicio"
+    ,"cancelar":true
+}]
